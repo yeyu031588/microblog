@@ -10,8 +10,8 @@ use App\Http\Controllers\Controller;
 class LoginController extends Controller
 {
     //
-    public function index()
+    public function login()
     {
-        echo 1;
+        echo 'login';
     }
 }
