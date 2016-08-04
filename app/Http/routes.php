@@ -17,6 +17,5 @@ Route::get('/', function () {
 Route::group(['namespace'=>'Admin','middleware'=>'admin'],function(){
     Route::get('/Admin','IndexController@index');
 });
-Route::get('/AdminLogin',function(){
-    return view('admin.login');
-});
+
+Route::any('/AdminLogin','Admin\LoginController@login');

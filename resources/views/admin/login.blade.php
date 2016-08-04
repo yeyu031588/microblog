@@ -63,19 +63,27 @@
     <a href="index.html">
         <img class="logo" src="./assets/img/logo-white.png" />
     </a>
-
     <div class="span4 box">
-        <div class="content-wrap">
-            <h6>Log in</h6>
-            <input class="span12" type="text" placeholder="E-mail address" />
-            <input class="span12" type="password" placeholder="Your password" />
-            <a href="#" class="forgot">Forgot password?</a>
-            <div class="remember">
-                <input id="remember-me" type="checkbox" />
-                <label for="remember-me">Remember me</label>
+        <form action="{{ url('/AdminLogin') }}" method="post">
+            <div class="content-wrap">
+                <h6>登录</h6>
+                @if(count($errors)>0)
+                    <div class="alert alert-danger">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </div>
+                @endif
+                <input class="span12" type="text" placeholder="账户" name="name"/>
+                <input class="span12" type="password" placeholder="密码"  name="password"/>
+                <a href="#" class="forgot">Forgot password?</a>
+                <div class="remember">
+                    <input id="remember-me" type="checkbox" />
+                    <label for="remember-me">Remember me</label>
+                </div>
+                <button class="btn-glow primary login button">登录</button>
             </div>
-            <a class="btn-glow primary login" href="index.html">Log in</a>
-        </div>
+        </form>
     </div>
 
     <div class="span4 no-account">
