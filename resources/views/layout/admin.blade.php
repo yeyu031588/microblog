@@ -6,29 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- bootstrap -->
-    <link href="./assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
-    <link href="./assets/css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
-    <link href="./assets/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+    <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="/assets/css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="/assets/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
 
     <!-- global styles -->
-    <link rel="stylesheet" type="text/css" href="./assets/css/layout.css" />
-    <link rel="stylesheet" type="text/css" href="./assets/css/elements.css" />
-    <link rel="stylesheet" type="text/css" href="./assets/css/icons.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/layout.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/elements.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/icons.css" />
 
     <!-- libraries -->
-    <link href="./assets/css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
+    <link href="/assets/css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
 
     <!-- this page specific styles -->
-    <link rel="stylesheet" href="./assets/css/compiled/user-list.css" type="text/css" media="screen" />
 
     <!-- open sans font -->
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
-
+    <link href='/assets/css/font.css' rel='stylesheet' type='text/css' />
+    <!--self plug-->
+    <link rel="stylesheet" href="/plug/bootstrapValid/bootstrapValidator.css"/>
     <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <!--<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>-->
     <![endif]-->
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
     @yield('extendCss')
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+
 <body>
 
 <!-- navbar -->
@@ -40,7 +41,7 @@
             <span class="icon-bar"></span>
         </button>
 
-        <a class="brand" href="index.html"><img src="./assets/img/logo.png" /></a>
+        <a class="brand" href="index.html"><img src="/assets/img/logo.png" /></a>
 
         <ul class="nav pull-right">
             <li class="hidden-phone">
@@ -100,7 +101,7 @@
                         <a href="#" class="close-icon"><i class="icon-remove-sign"></i></a>
                         <div class="messages">
                             <a href="#" class="item">
-                                <img src="./assets/img/contact-img.png" class="display" />
+                                <img src="/assets/img/contact-img.png" class="display" />
                                 <div class="name">Alejandra Galván</div>
                                 <div class="msg">
                                     There are many variations of available, but the majority have suffered alterations.
@@ -108,7 +109,7 @@
                                 <span class="time"><i class="icon-time"></i> 13 min.</span>
                             </a>
                             <a href="#" class="item">
-                                <img src=".assets/img/contact-img2.png" class="display" />
+                                <img src="/assets/img/contact-img2.png" class="display" />
                                 <div class="name">Alejandra Galván</div>
                                 <div class="msg">
                                     There are many variations of available, have suffered alterations.
@@ -116,7 +117,7 @@
                                 <span class="time"><i class="icon-time"></i> 26 min.</span>
                             </a>
                             <a href="#" class="item last">
-                                <img src="./assets/img/contact-img.png" class="display" />
+                                <img src="/assets/img/contact-img.png" class="display" />
                                 <div class="name">Alejandra Galván</div>
                                 <div class="msg">
                                     There are many variations of available, but the majority have suffered alterations.
@@ -149,7 +150,7 @@
                 </a>
             </li>
             <li class="settings hidden-phone">
-                <a href="signin.html" role="button">
+                <a href="{{ url('/Admin/layout')}}" role="button">
                     <i class="icon-share-alt"></i>
                 </a>
             </li>
@@ -158,15 +159,14 @@
 </div>
 <!-- end navbar -->
 
-@section('sidebar')
 <!-- sidebar -->
 
 <div id="sidebar-nav">
     <ul id="dashboard-menu">
         <li>
-            <a href="index.html">
+            <a href="{{url('/Admin')}}">
                 <i class="icon-home"></i>
-                <span>Home</span>
+                <span>主页</span>
             </a>
         </li>
         <li>
@@ -186,7 +186,7 @@
                 <i class="icon-chevron-down"></i>
             </a>
             <ul class="active submenu">
-                <li><a href="user-list.html" class="active">User list</a></li>
+                <li><a href="{{url('Admin/user')}}" class="active">User list</a></li>
                 <li><a href="new-user.html">New user form</a></li>
                 <li><a href="user-profile.html">User profile</a></li>
             </ul>
@@ -257,7 +257,7 @@
 
 
 <!-- main container -->
-
+@section('contenter')
 <div class="content">
     <!-- settings changer -->
     <div class="skins-nav">
@@ -268,10 +268,7 @@
             <span class="icon"></span><span class="text">Dark skin</span>
         </a>
     </div>
-
-    <div class="container-fluid">
         @yield('content')
-    </div>
 </div>
 
 
@@ -279,17 +276,20 @@
 @show
 
 <!-- scripts -->
+<script src="/assets/js/jquery.min.js"></script>
 <!-- scripts -->
-<script src="./assets/js/jquery-latest.js"></script>
-<script src="./assets/js/bootstrap.min.js"></script>
-<script src="./assets/js/jquery-ui-1.10.2.custom.min.js"></script>
+<script src="/assets/js/jquery-latest.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/jquery-ui-1.10.2.custom.min.js"></script>
 <!-- knob -->
-<script src="js/jquery.knob.js"></script>
+<script src="/assets/js/jquery.knob.js"></script>
 <!-- flot charts -->
-<script src="./assets/js/jquery.flot.js"></script>
-<script src="./assets/js/jquery.flot.stack.js"></script>
-<script src="./assets/js/jquery.flot.resize.js"></script>
-<script src="./assets/js/theme.js"></script>
+<script src="/assets/js/jquery.flot.js"></script>
+<script src="/assets/js/jquery.flot.stack.js"></script>
+<script src="/assets/js/jquery.flot.resize.js"></script>
+<script src="/assets/js/theme.js"></script>
+<!--插件-->
+<script src="/plug/bootstrapValid/bootstrapValidator.js"></script>
 @yield('extendJs')
 </body>
 </html>

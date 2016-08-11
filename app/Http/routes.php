@@ -16,6 +16,9 @@ Route::get('/', function () {
 });
 Route::group(['namespace'=>'Admin','middleware'=>'admin'],function(){
     Route::get('/Admin','IndexController@index');
+    Route::get('/Admin/user','UserController@index');
+    Route::any('/Admin/newuser','UserController@newuser');
 });
 
 Route::any('/AdminLogin','Admin\LoginController@login');
+Route::any('/Admin/layout','Admin\LoginController@layout');
