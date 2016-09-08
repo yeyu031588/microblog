@@ -25,9 +25,9 @@ class LoginController extends Controller
             if(!$user){
                 return redirect('/AdminLogin')->withErrors(array('用户不存在'))->withInput();
             }else{
-                if($user[0]->password == md5($password)){
-                    $request->session()->set('admin_id',$user[0]->admin_id);
-                    $request->session()->set('admin_name',$user[0]->username);
+                if($user[0]['password'] == md5($password)){
+                    $request->session()->set('admin_id',$user[0]['admin_id']);
+                    $request->session()->set('admin_name',$user[0]['username']);
                     return redirect('/Admin');
                 }else{
                     return redirect('/AdminLogin')->withErrors(array('密码错误'))->withInput();

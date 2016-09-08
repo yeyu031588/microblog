@@ -1,0 +1,25 @@
+body{color: #808080;}
+.navbar{border-radius: 0;margin-bottom: 0px;}
+/*未登录状态的首页*/
+.home{min-height:600px;_height:600px;}
+.bg-image-1{background-image: url('../../img/muwen1.png'); }
+.home .first,.twice,.third{padding: 2px;margin-top: 10px;}
+.home ul li{background:#e0f0e9;border:0px;color: #fff;}
+.login{height: 260px;}
+.topic{margin-top: 8px;}
+.weibo .list-group-item{margin-bottom: 6px;}
+.register div{padding: 0px;}
+.register {height: 600px;}
+.register ul li{border:0px;}
+.register .main{margin-top: 100px;height: 400px;}
+.register .one{border-right: 1px solid #ccc;}
+
+/*登录后的主页*/
+.bg-image-2{background-image: url('../../img/star.jpg'); }
+.textword{box-shadow:2px 2px 5px #ccc inset;resize:none}
+.home_send{margin-top: 5px;line-height: 30px;height: 30px;}
+.home_send div{width: 10%;}
+.login_home{min-height:600px;_height:600px;}
+.haslogin div{border: 0px;}
+.haslogin .bg_user{position: relative;height: 70px;margin-bottom: 34px;}
+.haslogin .bg_user img{width: 70px;position: absolute;top: 20px;left: 50%;margin-left: -35px;}

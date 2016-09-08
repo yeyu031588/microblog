@@ -22,41 +22,41 @@
     <link rel="stylesheet" href="./assets/css/compiled/signin.css" type="text/css" media="screen" />
 
     <!-- open sans font -->
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
+    {{--<link href='http://fonts.useso.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' />--}}
 
     <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <!--<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>-->
     <![endif]-->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
 <body>
 
 
 <!-- background switcher -->
-<div class="bg-switch visible-desktop">
-    <div class="bgs">
-        <a href="#" data-img="landscape.jpg" class="bg active">
-            <img src="./assets/img/bgs/landscape.jpg" />
-        </a>
-        <a href="#" data-img="blueish.jpg" class="bg">
-            <img src="./assets/img/bgs/blueish.jpg" />
-        </a>
-        <a href="#" data-img="7.jpg" class="bg">
-            <img src="./assets/img/bgs/7.jpg" />
-        </a>
-        <a href="#" data-img="8.jpg" class="bg">
-            <img src="./assets/img/bgs/8.jpg" />
-        </a>
-        <a href="#" data-img="9.jpg" class="bg">
-            <img src="./assets/img/bgs/9.jpg" />
-        </a>
-        <a href="#" data-img="10.jpg" class="bg">
-            <img src="./assets/img/bgs/10.jpg" />
-        </a>
-        <a href="#" data-img="11.jpg" class="bg">
-            <img src="./assets/img/bgs/11.jpg" />
-        </a>
-    </div>
-</div>
+{{--<div class="bg-switch visible-desktop">--}}
+    {{--<div class="bgs">--}}
+        {{--<a href="#" data-img="landscape.jpg" class="bg active">--}}
+            {{--<img src="./assets/img/bgs/landscape.jpg" />--}}
+        {{--</a>--}}
+        {{--<a href="#" data-img="blueish.jpg" class="bg">--}}
+            {{--<img src="./assets/img/bgs/blueish.jpg" />--}}
+        {{--</a>--}}
+        {{--<a href="#" data-img="7.jpg" class="bg">--}}
+            {{--<img src="./assets/img/bgs/7.jpg" />--}}
+        {{--</a>--}}
+        {{--<a href="#" data-img="8.jpg" class="bg">--}}
+            {{--<img src="./assets/img/bgs/8.jpg" />--}}
+        {{--</a>--}}
+        {{--<a href="#" data-img="9.jpg" class="bg">--}}
+            {{--<img src="./assets/img/bgs/9.jpg" />--}}
+        {{--</a>--}}
+        {{--<a href="#" data-img="10.jpg" class="bg">--}}
+            {{--<img src="./assets/img/bgs/10.jpg" />--}}
+        {{--</a>--}}
+        {{--<a href="#" data-img="11.jpg" class="bg">--}}
+            {{--<img src="./assets/img/bgs/11.jpg" />--}}
+        {{--</a>--}}
+    {{--</div>--}}
+{{--</div>--}}
 
 
 <div class="row-fluid login-wrapper">
@@ -99,6 +99,7 @@
 
 <!-- pre load bg imgs -->
 <script type="text/javascript">
+    $("html").css("background-image", "url('./assets/img/bgs/blueish.jpg')");
     $(function () {
         // bg switcher
         var $btns = $(".bg-switch .bg");

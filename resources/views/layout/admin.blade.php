@@ -7,6 +7,7 @@
 
     <!-- bootstrap -->
     <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    {{--<link href="/assets/css/bootstrap/bootstrap.min.css" rel="stylesheet" />--}}
     <link href="/assets/css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
     <link href="/assets/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
 
@@ -14,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/layout.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/elements.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/icons.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/admin/admin.css" />
 
     <!-- libraries -->
     <link href="/assets/css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
@@ -21,7 +23,7 @@
     <!-- this page specific styles -->
 
     <!-- open sans font -->
-    <link href='/assets/css/font.css' rel='stylesheet' type='text/css' />
+    {{--<link href='/assets/css/font.css' rel='stylesheet' type='text/css' />--}}
     <!--self plug-->
     <link rel="stylesheet" href="/plug/bootstrapValid/bootstrapValidator.css"/>
     <!--[if lt IE 9]>
@@ -186,9 +188,8 @@
                 <i class="icon-chevron-down"></i>
             </a>
             <ul class="active submenu">
-                <li><a href="{{url('Admin/user')}}" class="active">User list</a></li>
-                <li><a href="new-user.html">New user form</a></li>
-                <li><a href="user-profile.html">User profile</a></li>
+                <li><a href="{{url('Admin/user')}}" class="active">用户列表</a></li>
+                <li><a href="{{url('Admin/newuser')}}">创建用户</a></li>
             </ul>
         </li>
         <li>
@@ -290,6 +291,7 @@
 <script src="/assets/js/theme.js"></script>
 <!--插件-->
 <script src="/plug/bootstrapValid/bootstrapValidator.js"></script>
+<script src="/plug/selectCity/jquery.cityselect.js"></script>
 @yield('extendJs')
 </body>
 </html>

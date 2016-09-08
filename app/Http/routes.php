@@ -11,13 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','Home\IndexController@index');
+Route::get('/home','Home\UserController@home');
+Route::any('/register','Home\UserController@register');
 Route::group(['namespace'=>'Admin','middleware'=>'admin'],function(){
     Route::get('/Admin','IndexController@index');
     Route::get('/Admin/user','UserController@index');
     Route::any('/Admin/newuser','UserController@newuser');
+    Route::any('/Admin/user/profile','UserController@profile');
+    Route::any('/Admin/user/drop','UserController@drop');
+    Route::any('/Admin/user/modify','UserController@modify');
 });
 
 Route::any('/AdminLogin','Admin\LoginController@login');
