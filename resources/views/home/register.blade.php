@@ -3,6 +3,17 @@
 @section('body')
     <div class="container-fluid bg-image-1 register">
         <div class="container">
+            <!--错误信息-->
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+                        <!--错误信息-->
             <!--注册-->
             <div class="main bg-color-fff">
 
@@ -24,7 +35,7 @@
                                     <div class="form-group">
                                         <label for="Password" class="col-md-3 col-xs-3 control-label">密码</label>
                                         <div class="col-md-9 col-xs-9">
-                                            <input type="text" class="form-control" id="Password" placeholder="Password" name="password">
+                                            <input type="password" class="form-control" id="Password" placeholder="Password" name="password">
                                         </div>
                                     </div>
                                     <div class="form-group">

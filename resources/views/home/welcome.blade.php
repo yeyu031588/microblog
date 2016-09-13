@@ -147,7 +147,7 @@
                     <!--登录-->
                     <div class="bg-color-fff login">
                         <div class="col-sm-10 col-md-offset-1">
-                            <form class="form-horizontal" role="form">
+                            <form class="form-horizontal" role="form" action="{{url('/login')}}" method="post" id="form1">
                                 <div class="form-group">
                                     <div class="col-sm-10">
                                         账号登录
@@ -157,7 +157,7 @@
                                     <div class="col-sm-12 ">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                            <input type="text" class="form-control" placeholder="Username">
+                                            <input type="text" class="form-control" placeholder="Username" name="username">
                                         </div>
                                     </div>
                                 </div>
@@ -165,7 +165,7 @@
                                     <div class="col-sm-12">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                            <input type="password" class="form-control" placeholder="Password">
+                                            <input type="password" class="form-control" placeholder="Password" name="password">
                                         </div>
                                     </div>
                                 </div>
@@ -222,7 +222,7 @@
 
                     <div class="bg-color-fff login">
                         <div class="col-sm-6 col-md-offset-3">
-                            <form class="form-horizontal" role="form">
+                            <form class="form-horizontal" role="form" action="{{url('/login')}}" method="post">
                                 <div class="form-group">
                                     <div class="col-sm-10">
                                         账号登录
@@ -232,7 +232,7 @@
                                     <div class="col-sm-12 ">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                            <input type="text" class="form-control" placeholder="Username">
+                                            <input type="text" class="form-control" placeholder="Username" name="username">
                                         </div>
                                     </div>
                                 </div>
@@ -240,7 +240,7 @@
                                     <div class="col-sm-12">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                            <input type="password" class="form-control" placeholder="Password">
+                                            <input type="password" class="form-control" placeholder="Password" name="password">
                                         </div>
                                     </div>
                                 </div>
@@ -270,4 +270,30 @@
             </div>
         </div>
     </div>
+@endsection
+@section('extendJs')
+    <script>
+        $('#form1').on("submit",function() {
+            $(this).ajaxSubmit(
+                    {
+                        url: '{{url("/login")}}',                 //默认是form的action
+                        type: 'post',               //默认是form的method（get or post）
+                        dataType: "json",
+                        success: function(data,status,xhr,$form){
+                            if(!data.status){
+                                swal("OMG!", data.msg, "error");
+                            }else{
+                                window.location.href="{{url('/home')}}";
+                            }
+                        },
+                        error: function(xhr, status, error, $form){
+                            console.log("error",xhr, status, error, $form)
+                        }
+                    }
+            );
+            return false; //阻止表单默认提交
+        });
+
+
+    </script>
 @endsection

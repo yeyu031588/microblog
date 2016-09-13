@@ -151,7 +151,7 @@
                                 <img src="/assets/img/gallery1.jpg" alt="..." class="img-circle">
                             </div>
                             <div class=" text-center">
-                                雨落夜未眠 <i class="glyphicon glyphicon-star-empty"></i>11级
+                                {{Session::get('username')}} <i class="glyphicon glyphicon-star-empty"></i>11级
                             </div>
                             <div class="text-center count">
                                 <div class="pull-left col-md-4 col-xs-4"><a href="#" class="bg-color-fff"><strong node-type="follow">62229</strong></a><br><span>粉丝</span></div>

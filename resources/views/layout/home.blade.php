@@ -9,10 +9,14 @@
     <link href="/assets/css/home/base.css" rel="stylesheet" />
     <link href="/assets/css/home/custom.css" rel="stylesheet" />
     <link rel="stylesheet" href="/plug/bootstrapValid/bootstrapValidator.css"/>
+    <link rel="stylesheet" href="/plug/SweetAlert/sweetalert.css"/>
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/jquery.form.js"></script>
     <!--插件-->
     <script src="/plug/bootstrapValid/bootstrapValidator.js"></script>
+    <script src="/plug/SweetAlert/sweetalert-dev.js"></script>
+    <script src="/plug/SweetAlert/sweetalert.min.js"></script>
     @yield('extendCss')
 </head>
 <body>
@@ -38,7 +42,15 @@
                     <li class=""><a href="">首页</a></li>
                     <li><a href="">好友</a></li>
                     <li><a href="">发现</a></li>
-                    <li><a href=""><i class="glyphicon glyphicon-user"></i>雨落夜未眠</a></li>
+                    <li><a href=""><i class="glyphicon glyphicon-user">{{Session::get('username')}}</i></a></li>
+                    <li>
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-cog"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">修改资料</a></li>
+                            <li><a href="#">修改密码</a></li>
+                            <li><a href="{{url('/signOut')}}">退出登录</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
