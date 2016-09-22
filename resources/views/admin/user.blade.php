@@ -63,16 +63,25 @@
                     <thead>
                     <tr>
                         <th class="span4 sortable">
-                            Name
+                            姓名
                         </th>
                         <th class="span3 sortable">
-                            <span class="line"></span>Signed up
+                            <span class="line"></span>角色
                         </th>
                         <th class="span2 sortable">
-                            <span class="line"></span>Total spent
+                            <span class="line"></span>状态
                         </th>
-                        <th class="span3 sortable align-right">
-                            <span class="line"></span>Email
+                        <th class="span2 sortable">
+                            <span class="line"></span>邮箱
+                        </th>
+                        <th class="span3 sortable">
+                            <span class="line"></span>地址
+                        </th>
+                        <th class="span2 sortable">
+                            <span class="line"></span>注册时间
+                        </th>
+                        <th class="span4 sortable align-right">
+                            <span class="line"></span>操作
                         </th>
                     </tr>
                     </thead>
@@ -86,13 +95,22 @@
                             <span class="subtext">Graphic Design</span>
                         </td>
                         <td>
-                            Mar 13, 2012
+                            普通会员
                         </td>
                         <td>
-                            $ 4,500.00
+                            正常
                         </td>
                         <td class="align-right">
                             <a href="#"><?php echo $val['email'];?></a>
+                        </td>
+                        <td>
+                            泰兴
+                        </td>
+                        <td>
+                            2016-5-6
+                        </td>
+                        <td>
+                            删除|编辑|冻结
                         </td>
                     </tr>
                     <?php endforeach;?>
