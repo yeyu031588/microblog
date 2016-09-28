@@ -177,30 +177,30 @@
                 <span>Charts</span>
             </a>
         </li>
-        <li class="active">
+        <li class="">
             <div class="pointer">
                 <div class="arrow"></div>
                 <div class="arrow_border"></div>
             </div>
             <a class="dropdown-toggle" href="#">
                 <i class="icon-group"></i>
-                <span>Users</span>
+                <span>用户</span>
                 <i class="icon-chevron-down"></i>
             </a>
-            <ul class="active submenu">
-                <li><a href="{{url('Admin/user')}}" class="active">用户列表</a></li>
+            <ul class="submenu">
+                <li><a href="{{url('Admin/user')}}" class="">用户列表</a></li>
                 <li><a href="{{url('Admin/newuser')}}">创建用户</a></li>
             </ul>
         </li>
         <li>
             <a class="dropdown-toggle" href="#">
                 <i class="icon-edit"></i>
-                <span>Forms</span>
+                <span>权限管理</span>
                 <i class="icon-chevron-down"></i>
             </a>
             <ul class="submenu">
-                <li><a href="form-showcase.html">Form showcase</a></li>
-                <li><a href="form-wizard.html">Form wizard</a></li>
+                <li><a href="form-showcase.html">角色</a></li>
+                <li><a href="form-wizard.html">权限</a></li>
             </ul>
         </li>
         <li>
@@ -259,7 +259,7 @@
 
 <!-- main container -->
 @section('contenter')
-<div class="content">
+    <div class="content">
     <!-- settings changer -->
     <div class="skins-nav">
         <a href="#" class="skin first_nav selected">

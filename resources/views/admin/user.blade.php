@@ -100,7 +100,7 @@
                         <td>
                             正常
                         </td>
-                        <td class="align-right">
+                        <td>
                             <a href="#"><?php echo $val['email'];?></a>
                         </td>
                         <td>
@@ -109,8 +109,8 @@
                         <td>
                             2016-5-6
                         </td>
-                        <td>
-                            删除|编辑|冻结
+                        <td class="align-right">
+                            <a href="javascript:void(0);" class="deluser" cid="<?php echo $val['userid'];?>">删除</a>|编辑|冻结
                         </td>
                     </tr>
                     <?php endforeach;?>
@@ -123,4 +123,14 @@
             <!-- end users table -->
         </div>
     </div>
+@endsection
+@section('extendJs')
+    <script>
+        $('.deluser').click(function(){
+            var userid = $(this).attr('cid');
+            $.post('{{url('/Admin/user/drop')}}',{userid:userid},function(data){
+
+            },'json')
+        })
+    </script>
 @endsection

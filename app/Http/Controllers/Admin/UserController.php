@@ -102,7 +102,6 @@ class UserController extends Controller
         $userid = $request->input('id');
         $data = DB::table('user')->where(array('userid'=>$userid))->select()->get();
         return View('admin.newuser',['data'=>$data[0]]);
-        var_dump($data);
     }
 
     public function profile(Request $request){
@@ -112,6 +111,11 @@ class UserController extends Controller
     }
 
     public function drop(Request $request){
-        $userid = $request->input('id');
+        $userid = $request->input('userid');
+
+        return response()->json(array(
+            'status' => 1,
+            'msg' => 'ok',
+        ));
     }
 }
