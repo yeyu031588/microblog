@@ -15,7 +15,7 @@ class UserController extends Controller
     //用户列表
     public function index(Request $request)
     {
-        $user = DB::table('user')->orderBy('add_time')->select()->paginate(5);
+        $user = DB::table('user')->orderBy('add_time')->where(array('isDel'=>0))->select()->paginate(5);
         return View('admin.user',['user'=>$user]);
     }
 
@@ -112,7 +112,9 @@ class UserController extends Controller
 
     public function drop(Request $request){
         $userid = $request->input('userid');
-
+        DB::table('user')
+            ->where('userid', $userid)
+            ->update(['isDel' => 1]);
         return response()->json(array(
             'status' => 1,
             'msg' => 'ok',

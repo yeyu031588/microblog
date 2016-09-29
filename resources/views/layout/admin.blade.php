@@ -199,8 +199,8 @@
                 <i class="icon-chevron-down"></i>
             </a>
             <ul class="submenu">
-                <li><a href="form-showcase.html">角色</a></li>
-                <li><a href="form-wizard.html">权限</a></li>
+                <li><a href="{{url('/Admin/grant/role')}}">角色</a></li>
+                <li><a href="{{url('/Admin/grant/route')}}">路由</a></li>
             </ul>
         </li>
         <li>
@@ -261,14 +261,14 @@
 @section('contenter')
     <div class="content">
     <!-- settings changer -->
-    <div class="skins-nav">
-        <a href="#" class="skin first_nav selected">
-            <span class="icon"></span><span class="text">Default</span>
-        </a>
-        <a href="#" class="skin second_nav" data-file="css/skins/dark.css">
-            <span class="icon"></span><span class="text">Dark skin</span>
-        </a>
-    </div>
+    {{--<div class="skins-nav">--}}
+        {{--<a href="#" class="skin first_nav selected">--}}
+            {{--<span class="icon"></span><span class="text">Default</span>--}}
+        {{--</a>--}}
+        {{--<a href="#" class="skin second_nav" data-file="css/skins/dark.css">--}}
+            {{--<span class="icon"></span><span class="text">Dark skin</span>--}}
+        {{--</a>--}}
+    {{--</div>--}}
         @yield('content')
 </div>
 

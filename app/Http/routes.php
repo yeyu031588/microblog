@@ -25,6 +25,7 @@ Route::group(['namespace'=>'Admin','middleware'=>'admin'],function(){
     Route::any('/Admin/user/profile','UserController@profile');
     Route::any('/Admin/user/drop','UserController@drop');
     Route::any('/Admin/user/modify','UserController@modify');
+    Route::any('/Admin/grant/role','GrantController@role');
 });
 
 Route::any('/AdminLogin','Admin\LoginController@login');
