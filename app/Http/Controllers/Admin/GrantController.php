@@ -14,21 +14,35 @@ class GrantController extends Controller
 {
     public function role()
     {
+        $role = DB::table('role')->select()->get();
+        var_dump($role);
         return View('admin.role');
     }
 
     /*
-     * 添加
+     * 添加角色
      * **/
-    public function add()
+    public function addRole(Request $request)
     {
-
+        $role = $request->input('role');
+        if(DB::table('role')->where(array('role_name'=>$role))->select()->get()){
+            return response()->json(array(
+                'status' => 0,
+                'msg' => '角色已存在',
+            ));
+        }
+        $res = DB::table('role')->insert(['role_name'=>$role]);
+        $id = DB::table('role')->insertGetId(array());
+        return response()->json(array(
+            'status' => 1,
+            'msg' => 'ok',
+        ));
     }
 
     /*
-     * 删除
+     * 删除角色
      * **/
-    public function drop()
+    public function dropRole()
     {
 
     }

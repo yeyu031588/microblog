@@ -9,8 +9,8 @@
             <div class="row-fluid header">
                 <h3>角色列表</h3>
                 <div class="span10 pull-right">
-                    <input type="text" class="span5 search" placeholder="输入角色名" />
-                    <a href="javascript:void(0);" class="btn-flat success"><span>&#43;</span>新建角色</a>
+                    <input type="text" class="span5 search" placeholder="输入角色名" name="role_name"/>
+                    <a href="javascript:void(0);" class="btn-flat success add_role">新建角色</a>
                 </div>
             </div>
 
@@ -63,5 +63,15 @@
     </div>
 @endsection
 @section('extendJs')
+    <script>
+        $('.add_role').click(function(){
+            var role = $('input[name="role_name"]').val();
+            if(role){
+                $.post('{{url("/Admin/grant/addRole")}}',{role:role},function(data){
 
+                },'json')
+            }
+        })
+
+    </script>
 @endsection
