@@ -16,7 +16,7 @@ class GrantController extends Controller
     {
         $role = DB::table('role')->select()->get();
         var_dump($role);
-        return View('admin.role');
+        return View('admin.role',['data'=>$role]);
     }
 
     /*
