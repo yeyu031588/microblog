@@ -42,9 +42,9 @@ class GrantController extends Controller
     /*
      * 删除角色
      * **/
-    public function dropRole()
+    public function dropRole(Request $request)
     {
-
+        $role_id = $request->input('role_id');
     }
 
 }
