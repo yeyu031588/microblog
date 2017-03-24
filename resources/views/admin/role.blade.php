@@ -35,23 +35,23 @@
                     </thead>
                     <tbody>
                     <!-- row -->
-
+                    <?php foreach($data as $val):?>
                     <tr class="first">
                         <td>
-                            00001
+                            <?php echo $val['role_id'];?>
                         </td>
                         <td>
-                            老师
+                            <?php echo $val['role_name'];?>
                         </td>
                         <td>
-                            正常
+                            <?php echo $val['status'];?>
                         </td>
                         <td>
                             <a href="#">删除</a> |
                             <a href="#">编辑权限</a>
                         </td>
                     </tr>
-
+                    <?php endforeach;?>
                     </tbody>
                 </table>
             </div>
