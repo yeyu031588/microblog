@@ -97,6 +97,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'content' => [
+            'required' => '内容不能为空',
+        ],
     ],
 
     /*

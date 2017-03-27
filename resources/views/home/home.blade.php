@@ -41,14 +41,15 @@
                     <div class="list-group">
 
                         <!--发布-->
-                        <div class="list-group-item">
-                            <div><span>有什么新鲜事想告诉大家?</span></div>
-                            <div><textarea class="form-control textword" rows="5 "></textarea></div>
-                            <div class="home_send">
-                                <a href="#" class="bg-color-fff"><i class="glyphicon glyphicon-star">表情</i></a>
-                                <a href="#" class="bg-color-fff left-5"><i class="glyphicon glyphicon-picture">图片</i></a>
-                                <a href="#" class="bg-color-fff left-5"><i class="glyphicon glyphicon-retweet">话题</i></a>
-                                <button type="button" class="btn btn-primary pull-right left-5">发布</button>
+                        <form action="" id="form1">
+                            <div class="list-group-item">
+                                <div><span>有什么新鲜事想告诉大家?</span></div>
+                                <div><textarea class="form-control textword" rows="5 " name="content"></textarea></div>
+                                <div class="home_send">
+                                    <a href="#" class="bg-color-fff"><i class="glyphicon glyphicon-star">表情</i></a>
+                                    <a href="#" class="bg-color-fff left-5"><i class="glyphicon glyphicon-picture">图片</i></a>
+                                    <a href="#" class="bg-color-fff left-5"><i class="glyphicon glyphicon-retweet">话题</i></a>
+                                    <button type="submit" class="btn btn-primary pull-right left-5 release">发布</button>
                                 <span class="pull-right">
                                      <a href="" class="bg-color-fff dropdown-toggle" data-toggle="dropdown">公开<span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
@@ -59,8 +60,9 @@
                                         <li><a href="#"><i class="glyphicon glyphicon-home"></i>群可见</a></li>
                                     </ul>
                                 </span>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                         <!--发布-->
 
                         <!--新闻-->
@@ -181,5 +183,32 @@
             </div>
         </div>
     </div>
+@endsection
+@section('extendJs')
+    <script>
+        $(function(){
+            $('#form1').on("submit",function() {
+                $(this).ajaxSubmit(
+                        {
+                            url: '{{url("/sendPost")}}',                 //默认是form的action
+                            type: 'post',               //默认是form的method（get or post）
+                            dataType: "json",
+                            success: function(data,status,xhr,$form){
+                                alert(data);
+//                                if(!data.status){
+//                                    swal("OMG!", data, "error");
+//                                }else{
+//                                   alert('success');
+//                                }
+                            },
+                            error: function(xhr, status, error, $form){
+                                console.log("error",xhr, status, error, $form)
+                            }
+                        }
+                );
+                return false; //阻止表单默认提交
+            });
+        })
+    </script>
 @endsection
 

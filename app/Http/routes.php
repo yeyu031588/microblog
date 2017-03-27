@@ -17,6 +17,7 @@ Route::post('/login','Home\UserController@login');
 Route::get('/signOut','Home\UserController@signOut');
 Route::group(['namespace'=>'Home','middleware'=>'user'],function(){
     Route::get('/home','UserController@home');
+    Route::post('/sendPost','PostController@sendPost');
 });
 Route::group(['namespace'=>'Admin','middleware'=>'admin'],function(){
     Route::get('/Admin','IndexController@index');
