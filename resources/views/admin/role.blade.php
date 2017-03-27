@@ -47,7 +47,7 @@
                             <?php echo $val['status'];?>
                         </td>
                         <td>
-                            <a href="#">删除</a> |
+                            <a href="javascript:void(0);" class="del_role" id="<?php echo $val['role_id'];?>">删除</a> |
                             <a href="#">编辑权限</a>
                         </td>
                     </tr>
@@ -71,6 +71,13 @@
 
                 },'json')
             }
+        })
+
+        $('.del_role').click(function(){
+            var role_id = $(this).attr('id');
+                $.post('{{url("/Admin/grant/dropRole")}}',{role_id:role_id},function(data){
+
+                },'json')
         })
 
     </script>

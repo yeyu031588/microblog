@@ -45,6 +45,7 @@ class GrantController extends Controller
     public function dropRole(Request $request)
     {
         $role_id = $request->input('role_id');
+        var_dump($role_id);
     }
 
 }
