@@ -45,7 +45,10 @@ class GrantController extends Controller
     public function dropRole(Request $request)
     {
         $role_id = $request->input('role_id');
-        var_dump($role_id);
+        DB::table('role')
+            ->where('role_id', $role_id)
+            ->delete();
+
     }
 
 }

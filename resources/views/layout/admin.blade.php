@@ -200,7 +200,7 @@
             </a>
             <ul class="submenu">
                 <li><a href="{{url('/Admin/grant/role')}}">角色</a></li>
-                <li><a href="{{url('/Admin/grant/route')}}">路由</a></li>
+                <li><a href="{{url('/Admin/route')}}">路由</a></li>
             </ul>
         </li>
         <li>

@@ -29,6 +29,7 @@ Route::group(['namespace'=>'Admin','middleware'=>'admin'],function(){
     Route::any('/Admin/grant/role','GrantController@role');
     Route::any('/Admin/grant/addRole','GrantController@addRole');
     Route::any('/Admin/grant/dropRole','GrantController@dropRole');
+    Route::any('/Admin/route','RouteController@routeList');
 });
 
 Route::any('/AdminLogin','Admin\LoginController@login');
