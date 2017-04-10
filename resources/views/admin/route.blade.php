@@ -7,7 +7,7 @@
     <div class="container-fluid">
         <div id="pad-wrapper" class="users-list">
             <div class="row-fluid header">
-                <h3>路由列表</h3>
+                <h3>路由管理</h3>
                 <div class="span10 pull-right">
                     <input type="text" class="span5 search" placeholder="输入角色名" name="role_name"/>
                     <a href="javascript:void(0);" class="btn-flat success add_role">新建角色</a>
