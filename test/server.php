@@ -8,13 +8,13 @@ class Server_socket
     private $socket;
     private $accept = [];
     private $hands = [];
+    private $userlist = [];
     function __construct($host, $port, $max)
     {
         $this->socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
         socket_set_option($this->socket, SOL_SOCKET, SO_REUSEADDR, TRUE);
         socket_bind($this->socket, $host,$port);
         socket_listen($this->socket,$max);
-        print_r($this->socket);
     }
 
     public function start()
@@ -35,17 +35,18 @@ class Server_socket
                     $length = socket_recv($sock, $buffer, 204800, null);
                     $key = array_search($sock, $this->accept);
                     if (!$this->hands[$key]) {
+                        $user_id = $this->getUserId($buffer);;
                         $this->dohandshake($sock,$buffer,$key);
+                        $this->userlist[$user_id] = $key;
+                        print_r($this->userlist);
                     }else if($length < 1){
                         $this->close($sock);
                     }else{
-                        // 解码  
+                        // 解码
                         $data = $this->decode($buffer);
-                        print_r($data);
-                        //编码  
+                        //编码
                         $data = $this->encode($data);
-                        print_r($data);
-                        //发送  
+                        //发送
                         foreach ($this->accept as $client) {
                             socket_write($client, $data,strlen($data));
                         }
@@ -119,8 +120,16 @@ class Server_socket
         }
     }
 
+    //获取用户user_id
+    public function getUserId($data){
+        if(preg_match("/user_id=(.*) HTTP/", $data, $match)){
+            return $match[1];
+        }
+    }
+
+    //
+
 }/* end of class Server_socket*/
 
 $server_socket = new Server_socket('127.0.0.1',3005);
 $server_socket->start(); sleep(1000);
-?>
