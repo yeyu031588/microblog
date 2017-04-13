@@ -19,8 +19,10 @@ class Server_socket
 
     public function start()
     {
+//        unset($this->accept);
+//        unset($this->hands);
+//        unset($this->userlist);exit;
         while (true) {
-
             $cycle = $this->accept;
             $cycle[] = $this->socket;
             socket_select($cycle, $write, $except, null);
@@ -33,22 +35,28 @@ class Server_socket
                     $this->hands[$key] = false;
                 }else{
                     $length = socket_recv($sock, $buffer, 204800, null);
+
                     $key = array_search($sock, $this->accept);
                     if (!$this->hands[$key]) {
                         $user_id = $this->getUserId($buffer);;
                         $this->dohandshake($sock,$buffer,$key);
                         $this->userlist[$user_id] = $key;
-                        print_r($this->userlist);
                     }else if($length < 1){
                         $this->close($sock);
                     }else{
                         // 解码
                         $data = $this->decode($buffer);
-                        //编码
+                        $info = json_decode($data,true);
+                        $to_id = $info['to_id'];
+                        $send_id = $info['send_id'];
                         $data = $this->encode($data);
-                        //发送
-                        foreach ($this->accept as $client) {
+                        if($to_id){
+                            $client = $this->accept[$this->userlist[$to_id]];
                             socket_write($client, $data,strlen($data));
+                        }else{
+                            foreach ($this->accept as $client) {
+                                socket_write($client, $data,strlen($data));
+                            }
                         }
                     }
                 }
@@ -127,9 +135,9 @@ class Server_socket
         }
     }
 
-    //
 
 }/* end of class Server_socket*/
 
-$server_socket = new Server_socket('127.0.0.1',3005);
+$server_socket = new Server_socket('120.26.231.172',3005,100);
 $server_socket->start(); sleep(1000);
+?>
