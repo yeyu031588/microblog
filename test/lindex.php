@@ -1,3 +1,7 @@
+<?php
+$redis = new Redis();
+var_dump($redis);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,10 +22,10 @@
 </div>
 </body>
 <script>
-    var user_id = "<?php echo $_GET['user_id'];?>";
-    var to_id = "<?php echo $_GET['to_id'] || 0; ?>";
+    var user_id = "<?php echo $_GET['user_id']?$_GET['user_id']:0;?>";
+    var to_id = "<?php if(isset($_GET['to_id'])){echo $_GET['to_id'];}else{echo 0;}?>";
     var con = document.getElementById("con");
-    var socket = new WebSocket('ws://120.26.231.172:3005?user_id='+user_id);
+    var socket = new WebSocket('ws://127.0.0.1:3005?user_id='+user_id);
     socket.onopen = function(event) {
         con.innerHTML="<p>connect success </p><p>对话user_is:"+to_id+"</p>";
     };

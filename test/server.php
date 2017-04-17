@@ -9,12 +9,14 @@ class Server_socket
     private $accept = [];
     private $hands = [];
     private $userlist = [];
+    private $redis ;
     function __construct($host, $port, $max)
     {
         $this->socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
         socket_set_option($this->socket, SOL_SOCKET, SO_REUSEADDR, TRUE);
         socket_bind($this->socket, $host,$port);
         socket_listen($this->socket,$max);
+        $this->redis = $this->redis();
     }
 
     public function start()
@@ -26,7 +28,7 @@ class Server_socket
             $cycle = $this->accept;
             $cycle[] = $this->socket;
             socket_select($cycle, $write, $except, null);
-
+            echo 'has';
             foreach ($cycle as $sock) {
                 if ($sock == $this->socket) {
                     $this->accept[] = socket_accept($sock);
@@ -41,6 +43,9 @@ class Server_socket
                         $user_id = $this->getUserId($buffer);;
                         $this->dohandshake($sock,$buffer,$key);
                         $this->userlist[$user_id] = $key;
+                        $this->redis->hSet('user_status',$user_id,1);
+                        $res = $this->redis->hGetAll('user_status');
+                        var_dump($res);
                     }else if($length < 1){
                         $this->close($sock);
                     }else{
@@ -88,6 +93,11 @@ class Server_socket
         socket_close($sock);
         unset($this->accept[$key]);
         unset($this->hands[$key]);
+        $user_id = array_search($key, $this->userlist);
+        if($user_id){
+            unset($this->userlist[$user_id]);
+            $this->redis->hSet('user_status',$user_id,0);
+        }
     }
 
     /**
@@ -135,9 +145,29 @@ class Server_socket
         }
     }
 
+    private function redis(){
+        $redis = new Redis();
+        $redis->connect('127.0.0.1',6379);
+        return $redis;
+    }
+
+    /*
+     * 关闭用户连接
+     * **/
+    public function close_user_connect($user_id){
+        $key = $this->userlist[$user_id];
+        $socket = $this->accept[$key];
+        if($socket){
+            socket_close($socket);
+            unset($this->accept[$key]);
+            unset($this->hands[$key]);
+            unset($this->userlist[$user_id]);
+            $this->redis->hSet('user_status',$user_id,0);
+        }
+    }
 
 }/* end of class Server_socket*/
 
-$server_socket = new Server_socket('120.26.231.172',3005,100);
+$server_socket = new Server_socket('127.0.0.1',3005,100);
 $server_socket->start(); sleep(1000);
 ?>
