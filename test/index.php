@@ -1,5 +1,5 @@
 <?php
-$redis = new Redis();
+    $redis = new Redis();
 var_dump($redis);
 ?>
 <!DOCTYPE html>
@@ -19,8 +19,10 @@ var_dump($redis);
 <body>
 <div>
     <button id='send'> 发送</button>
+    <button id='close'> 关闭</button>
 </div>
 </body>
+<script src="jquery.js"></script>
 <script>
     var user_id = "<?php echo $_GET['user_id']?$_GET['user_id']:0;?>";
     var to_id = "<?php if(isset($_GET['to_id'])){echo $_GET['to_id'];}else{echo 0;}?>";
@@ -44,12 +46,21 @@ var_dump($redis);
             "message" : content,
             "to_id" : to_id,
             "send_id" : user_id,
+            "type" : 1,
         };
         msg = JSON.stringify(msg);
         socket.send(msg);
         con.innerHTML=con.innerHTML+"<p>本人："+content+"</p>";
 
     });
+
+    $('#close').click(function(){
+        var msg = {
+            "type" : 0,
+        };
+        msg = JSON.stringify(msg);
+        socket.send(msg);
+    })
 
 </script>
 

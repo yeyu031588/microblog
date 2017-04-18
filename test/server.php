@@ -45,24 +45,11 @@ class Server_socket
                         $this->userlist[$user_id] = $key;
                         $this->redis->hSet('user_status',$user_id,1);
                         $res = $this->redis->hGetAll('user_status');
-                        var_dump($res);
                     }else if($length < 1){
                         $this->close($sock);
                     }else{
-                        // 解码
-                        $data = $this->decode($buffer);
-                        $info = json_decode($data,true);
-                        $to_id = $info['to_id'];
-                        $send_id = $info['send_id'];
-                        $data = $this->encode($data);
-                        if($to_id){
-                            $client = $this->accept[$this->userlist[$to_id]];
-                            socket_write($client, $data,strlen($data));
-                        }else{
-                            foreach ($this->accept as $client) {
-                                socket_write($client, $data,strlen($data));
-                            }
-                        }
+                        $this->doMessage($buffer,$sock);
+
                     }
                 }
             }
@@ -152,22 +139,49 @@ class Server_socket
     }
 
     /*
-     * 关闭用户连接
+     * 处理接受的消息
      * **/
-    public function close_user_connect($user_id){
-        $key = $this->userlist[$user_id];
-        $socket = $this->accept[$key];
-        if($socket){
-            socket_close($socket);
-            unset($this->accept[$key]);
-            unset($this->hands[$key]);
-            unset($this->userlist[$user_id]);
-            $this->redis->hSet('user_status',$user_id,0);
+    public function doMessage($buffer,$sock){
+        if(!$buffer){
+            echo '消息为空';
         }
+        $data = $this->decode($buffer);
+        $info = json_decode($data,true);
+        $type = $info['type'];
+        print_r($type);
+        switch($type)
+        {
+            //关闭
+            case 0:
+                echo '关闭客户端';
+                $this->close($sock);
+                break;
+            //发送信息
+            case 1:
+                $to_id = $info['to_id'];
+                $send_id = $info['send_id'];
+                $data = $this->encode($data);
+                if($to_id){
+                    $client = $this->accept[$this->userlist[$to_id]];
+                    socket_write($client, $data,strlen($data));
+                }else{
+                    foreach ($this->accept as $client) {
+                        $send_sock = $this->accept[$this->userlist[$send_id]];
+                        if($send_sock != $client){
+                            socket_write($client, $data,strlen($data));
+                        }
+                    }
+                }
+                break;
+        }
+
+
+
+        print_r($data);
+
     }
 
 }/* end of class Server_socket*/
 
-$server_socket = new Server_socket('127.0.0.1',3005,100);
-$server_socket->start(); sleep(1000);
+
 ?>
