@@ -9,7 +9,7 @@ var_dump($redis);
     <meta charset="UTF-8">
     <title>websocket</title>
     <style>
-        .con{width:500px;height:400px;border: 2px solid #ccc;}
+        .con{width:500px;min-height:400px;border: 2px solid #ccc;}
     </style>
 </head>
 <div class="con" id="con">

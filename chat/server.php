@@ -156,12 +156,12 @@ class Server_socket
                 echo '关闭客户端';
                 $this->close($sock);
                 break;
-            //发送信息
+            //发送用户信息
             case 1:
                 $to_id = $info['to_id'];
                 $send_id = $info['send_id'];
                 $data = $this->encode($data);
-                if($to_id){
+                if($to_id == 0){
                     $client = $this->accept[$this->userlist[$to_id]];
                     socket_write($client, $data,strlen($data));
                 }else{
@@ -172,6 +172,10 @@ class Server_socket
                         }
                     }
                 }
+                break;
+            //群聊
+            case 2:
+
                 break;
         }
 
